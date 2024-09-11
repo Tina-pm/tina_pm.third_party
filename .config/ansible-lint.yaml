@@ -1,0 +1,6 @@
+---
+profile: production
+exclude_paths:
+  - roles
+skip_list:
+  - meta-runtime[unsupported-version]  # 2.14 deemed too old by ansible-lint
