@@ -15,8 +15,15 @@ libvirt_host_libvirt_packages_client: >-
      (libvirt_host_packages_sasl if libvirt_host_enable_sasl_support | bool else [])
   }}
 
+# List of all services.
+_libvirt_services: '{{ _libvirt_daemon_services + _libvirt_socket_services }}'
+_libvirt_daemon_services:
+  - service: libvirtd
+    enabled: true
+
 # List of socket services.
-_libvirt_socket_services:
+_libvirt_socket_services: '{{ _libvirt_socket_services_default }}'
+_libvirt_socket_services_default:
   - service: libvirtd-tcp.socket
     enabled: "{{ libvirt_host_tcp_listen | bool }}"
     listen_address: "{{ libvirt_host_tcp_listen_address }}"

@@ -213,11 +213,3 @@
   loop: "{{ _libvirt_services }}"
   loop_control:
     label: "{{ item.service }}"
-  vars:
-    _libvirt_services:
-      - service: libvirtd-tcp.socket
-        enabled: "{{ libvirt_host_tcp_listen | bool }}"
-      - service: libvirtd-tls.socket
-        enabled: "{{ libvirt_host_tls_listen | bool }}"
-      - service: libvirtd
-        enabled: true
